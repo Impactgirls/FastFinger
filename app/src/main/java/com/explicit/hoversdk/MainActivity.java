@@ -1,16 +1,10 @@
 package com.explicit.hoversdk;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView check_balance;
     private ImageView airtime;
     private String Tag;
+    private String phoneNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
         buyData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new HoverParameters.Builder(MainActivity.this)
                         .request("718f856c")
+                        .extra("UserNumber", phoneNumber)
                         .buildIntent();
                 startActivityForResult(intent, 0);
             }
@@ -78,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -97,4 +98,6 @@ public class MainActivity extends AppCompatActivity {
         }
         startActivityForResult(new Intent(this, PermissionActivity.class), 0);
     }
+
+
 }

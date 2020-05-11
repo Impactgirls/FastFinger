@@ -19,6 +19,8 @@ import com.hover.sdk.api.Hover;
 import com.hover.sdk.api.HoverParameters;
 import com.hover.sdk.permissions.PermissionActivity;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
     private ImageView img_borrow;
     private ImageView buyData;
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Hover.initialize(this);
         Hover.getAllValidActions(this);
 
@@ -39,22 +40,20 @@ public class MainActivity extends AppCompatActivity {
         airtime = findViewById(R.id.airtime);
         buyData = findViewById(R.id.buydata);
         img_borrow = findViewById(R.id.borrow);
+
         img_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new HoverParameters.Builder(MainActivity.this)
-                        .request("f0e1418a")
-                        .extra("amount","100")
-                        .extra("RecipientAccountNumber", "0801428168")
-                        .buildIntent();
-                startActivityForResult(intent, 0);
+                startActivity(new Intent(getApplicationContext(), TransferToOthers.class));
             }
         });
         buyData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new HoverParameters.Builder(MainActivity.this)
-                        .request("718f856c")
+                        .request("2de92a1c")
+                        .setHeader("Working")
+                        .initialProcessingMessage("please wait")
                         .buildIntent();
                 startActivityForResult(intent, 0);
             }
@@ -64,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new HoverParameters.Builder(MainActivity.this)
                         .request("c64a36e0")
+                        .setHeader("Working")
+                        .initialProcessingMessage("please wait")
                         .buildIntent();
                 startActivityForResult(intent, 0);
             }
@@ -71,11 +72,7 @@ public class MainActivity extends AppCompatActivity {
         airtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new HoverParameters.Builder(MainActivity.this)
-                        .request("a744914e")
-                        .extra("amount","50")
-                        .buildIntent();
-                startActivityForResult(intent, 0);
+                startActivity(new Intent(getApplicationContext(), BuyAirtime.class));
             }
         });
     }
@@ -84,17 +81,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
-            String[] Airtime = data.getStringArrayExtra("session_messenger");
-            String a744914e = data.getStringExtra("a744914e");
             String[] Balance = data.getStringArrayExtra("session_messenger");
             String c64a36e0 = data.getStringExtra("c64a36e0");
-            String[] Transfer = data.getStringArrayExtra("session_messenger");
-            String f0e1418a = data.getStringExtra("c64a36e0");
             String[] BuyData = data.getStringArrayExtra("session_messenger");
-            String buyData = data.getStringExtra("718f856c");
+            String buyData = data.getStringExtra("2de92a1c");
         } else if (requestCode == 0 && resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "." + data.getStringExtra("error"), Toast.LENGTH_LONG).show();
         }
         startActivityForResult(new Intent(this, PermissionActivity.class), 0);
     }
+
 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:background="@drawable/rectangle3"
+
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -19,6 +19,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="12dp"
+        android:fontFamily="@font/baloo"
         android:text="FastFinger"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -50,14 +51,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo_drawable"
-        />
+        app:srcCompat="@mipmap/ic_icon" />
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="175dp"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,9 +95,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="49dp"
-                    android:background="#f4aeae"
-                    android:src="@drawable/loan"
-                    android:layout_marginTop="25dp" />
+                    android:layout_marginTop="25dp"
+                    app:srcCompat="@mipmap/ic_transfer"
+                    android:background="@drawable/circle"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -132,11 +131,11 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:background="#f4aeae"
-                    android:src="@drawable/airtime2"
                     android:layout_marginStart="49dp"
                     android:layout_marginTop="25dp"
-                    />
+                    android:background="@drawable/circle2"
+
+                    app:srcCompat="@mipmap/money" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -183,10 +182,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="49dp"
-                    android:background="#f4aeae"
-                    android:src="@drawable/paybill"
                     android:layout_marginTop="15dp"
-                    />
+                    android:background="@drawable/circle3"
+                    app:srcCompat="@drawable/paybill" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -220,16 +218,14 @@
                     android:layout_height="75dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:background="#f4aeae"
-                    android:src="@drawable/balance"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="49dp"
                     android:layout_marginTop="25dp"
-                    />
+                    android:background="@drawable/circle4"
+                    app:srcCompat="@drawable/balance"
+                    tools:ignore="VectorDrawableCompat" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
